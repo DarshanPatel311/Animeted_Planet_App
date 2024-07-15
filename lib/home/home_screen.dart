@@ -1,7 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:untitled1/home/planet.dart';
+import 'package:untitled1/provider/planet_provider.dart';
+
+import '../Favorite/favorite_screen.dart';
+import '../details/details_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,8 +17,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   @override
   Widget build(BuildContext context) {
+    PlanetProvider ProviderT=Provider.of(context);
+    PlanetProvider ProviderF=Provider.of(context,listen: false);
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -44,7 +53,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: EdgeInsets.all(20),
                     child: Row(
                       children: [
-                        Image.asset('assets/img/ic_menu.png', width: 20,),
+                        IconButton(onPressed: () {
+                          Navigator.push(context, PageTransition(duration : Duration(seconds: 1),type: PageTransitionType.bottomToTop, child: FavoriteScreen()));
+
+
+                        }, icon: Icon(Icons.favorite_outline_outlined,size: 35,)),
                         Spacer(),
                         Image.asset('assets/img/ic_avatar.png', width: 30,)
                       ],
@@ -60,9 +73,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),),
                     Expanded(
                       child: CarouselSlider(items: [
-                        Planet("assets/img/img_mars.png", "Mars", "Mars has seasons, polar ice caps, volcanoes, canyons, and weather.... "),
-                        Planet("assets/img/img_earth.png", "Earth", "The third planet from the sun and the only astronomical thing that....."),
-                        Planet("assets/img/img_venus.png", "Venus", "The second planet from the Sun, and the sixth largest planet..... "),
+                        ...List.generate(ProviderT.planets.length, (index) =>GestureDetector(
+                            onTap: () {
+                              ProviderF.changeIndex(index);
+                              Navigator.push(context, PageTransition(duration : Duration(seconds: 1),type: PageTransitionType.leftToRight, child: DetailsScreenils()));
+
+                            },
+
+                            child: Planet("${ProviderT.planets[index].image}", "${ProviderT.planets[index].name}", "${ProviderT.planets[index].description}")),)
 
                       ], options: CarouselOptions(
                         autoPlay: false,

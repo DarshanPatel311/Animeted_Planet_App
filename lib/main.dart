@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:untitled1/provider/planet_provider.dart';
+import 'package:untitled1/splesh_screen.dart';
 
 import 'home/home_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => PlanetProvider(),)
+  ],child: const MyApp(),),);
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -15,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness:  Brightness.dark
       ),
-      home: HomeScreen(),
+      home: SpleshScreen(),
 
     );
   }
