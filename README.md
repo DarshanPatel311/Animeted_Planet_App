@@ -82,6 +82,10 @@ class _PlanetDetailsState extends State<PlanetDetails> {
 This example demonstrates a basic use of animation with AnimatedContainer in Flutter, which you can adapt and expand upon for your planets app.
 
 
+<img src = "https://github.com/user-attachments/assets/d95cdbbb-6e57-48ad-b00c-33cac60dbfcf" width=22% height=35%>
 
+<img src = "https://github.com/user-attachments/assets/7a14d549-398b-4faa-a3ce-e1132aaaf494" width=22% height=35%>
 
-<img src = "" width=22% height=35%>
+<img src = "https://github.com/user-attachments/assets/f98dfe95-30bd-413a-a24b-fceeef709eee" width=22% height=35%>
+
+<img src = "https://github.com/user-attachments/assets/7397c452-3040-4f18-b1d4-4fe7b65b90d8" width=22% height=35%>
